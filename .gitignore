@@ -31,7 +31,12 @@
 
 # Visual Studio cache directory
 .vs/
+.vscode/
+.vsconfig
 
+# Assets that we are not using
+/Assets/Rowlan
+/Assets/AngeloMaN87
 # Gradle cache directory
 .gradle/
 
