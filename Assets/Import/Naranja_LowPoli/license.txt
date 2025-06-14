@@ -1,0 +1,11 @@
+Model Information:
+* title:	Naranja LowPoli
+* source:	https://sketchfab.com/3d-models/naranja-lowpoli-2c0a2a2350694f7590859c4ac32b5366
+* author:	ProyectoSCAN (https://sketchfab.com/projectoscan)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Naranja LowPoli" (https://sketchfab.com/3d-models/naranja-lowpoli-2c0a2a2350694f7590859c4ac32b5366) by ProyectoSCAN (https://sketchfab.com/projectoscan) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
