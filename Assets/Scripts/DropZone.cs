@@ -22,14 +22,12 @@ public class DropZone : MonoBehaviour
         obj.transform.position = transform.position + Vector3.up * 0.01f;
         obj.transform.rotation = Quaternion.identity;
         obj.transform.SetParent(parentOriginal); // Vuelve a su contenedor
-        Debug.Log($"Object {obj.name} registered in DropZone {gameObject.name} at position {obj.transform.position}.");
         return true;
     }
     public void RemoveObject(GameObject obj)
     {
         if (currentObject == obj)
         {
-            Debug.Log($"Objeto {obj.name} removido de {gameObject.name}");
             currentObject = null;
         }
     }

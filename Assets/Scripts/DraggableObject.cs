@@ -25,7 +25,6 @@ public class DraggableObject : MonoBehaviour
             zonaActual = null;
             colocadoEnZona = false;
         }
-        Debug.Log("Posición original: " + originalPosition);
         isDragging = true;
     }
 
