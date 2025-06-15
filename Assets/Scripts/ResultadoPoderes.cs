@@ -13,8 +13,8 @@ public class ResultadoPoderes
 
     public override string ToString()
     {
-        return $"🔥 Fuego:{fuego} (+{bonificacionVidaHoguera} vida)\n" +
-               $"💧 Agua:{agua} (+{bonificacionVelocidad}% velocidad)\n" +
-               $"🌱 Tierra:{tierra} (+{bonificacionDaño} daño)\n";
+        return $"🔥 Fuego: {fuego} (+{bonificacionVidaHoguera} vida)\n" +
+               $"💧 Agua: {agua} (+{bonificacionVelocidad}% velocidad)\n" +
+               $"🌱 Tierra: {tierra} (+{bonificacionDaño}% daño)\n";
     }
 }
