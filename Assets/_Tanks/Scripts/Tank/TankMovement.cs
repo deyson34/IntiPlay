@@ -164,39 +164,7 @@ namespace Tanks.Complete
                 var projectile = Instantiate(basicProjectil, bullet.position, transform.rotation);
                 projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
             }
-            EngineAudio();
-        }
-
-
-        private void EngineAudio()
-        {
-            // If there is no input (the tank is stationary)...
-            if (Mathf.Abs(m_MovementInputValue) < 0.1f && Mathf.Abs(m_TurnInputValue) < 0.1f)
-            {
-                // ... and if the audio source is currently playing the driving clip...
-                if (m_MovementAudio.clip == m_EngineDriving)
-                {
-                    // ... change the clip to idling and play it.
-                    m_MovementAudio.clip = m_EngineIdling;
-                    m_MovementAudio.pitch = Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
-                    m_MovementAudio.Play();
-                }
-            }
-            else
-            {
-                // Otherwise if the tank is moving and if the idling clip is currently playing...
-                if (m_MovementAudio.clip == m_EngineIdling)
-                {
-                    // ... change the clip to driving and play.
-                    m_MovementAudio.clip = m_EngineDriving;
-                    m_MovementAudio.pitch = Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
-                    m_MovementAudio.Play();
-                }
-            }
-        }
-
-
-        private void FixedUpdate()
+                 }        private void FixedUpdate()
         {
             // If this is using a gamepad or have direct control enabled, this used a different movement method : instead of
             // "up" behind moving forward for the tank, it instead takes the gamepad move direction as the desired forward for the tank

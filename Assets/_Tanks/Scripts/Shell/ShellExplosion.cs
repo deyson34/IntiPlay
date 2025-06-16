@@ -67,8 +67,7 @@ namespace Tanks.Complete
             ParticleSystem.MainModule mainModule = m_ExplosionParticles.main;
             Destroy(m_ExplosionParticles.gameObject, mainModule.duration);
 
-            // Destroy the shell.
-            Destroy(gameObject);
+            Destroy(gameObject); // Destroy the shell itself after the explosion.
         }
 
 
