@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
@@ -9,6 +10,12 @@ namespace Tanks.Complete
     [DefaultExecutionOrder(-10)]
     public class TankMovement : MonoBehaviour
     {
+        public GameObject basicProjectil;
+        public Transform bullet;
+
+
+
+
         [Tooltip("The player number. Without a tank selection menu, Player 1 is left keyboard control, Player 2 is right keyboard")]
         public int m_PlayerNumber = 1;              // Used to identify which tank belongs to which player.  This is set by this tank's manager.
         [Tooltip("The speed in unity unit/second the tank move at")]
@@ -152,7 +159,11 @@ namespace Tanks.Complete
                 m_MovementInputValue = m_MoveAction.ReadValue<float>();
                 m_TurnInputValue = m_TurnAction.ReadValue<float>();
             }
-
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                var projectile = Instantiate(basicProjectil, bullet.position, transform.rotation);
+                projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
+            }
             EngineAudio();
         }
 
