@@ -147,7 +147,7 @@ namespace Tanks.Complete
             m_TurnAction.Enable();
 
             // Store the original pitch of the audio source.
-            m_OriginalPitch = m_MovementAudio.pitch;
+            //m_OriginalPitch = m_MovementAudio.pitch;
         }
 
 
@@ -164,7 +164,7 @@ namespace Tanks.Complete
                 var projectile = Instantiate(basicProjectil, bullet.position, transform.rotation);
                 projectile.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
             }
-            EngineAudio();
+            //EngineAudio();
         }
 
 
