@@ -15,6 +15,8 @@ public class UIManagerPago : MonoBehaviour
     {
         botonEmpezar.interactable = false;
         botonEmpezar.onClick.AddListener(EmpezarJuego);
+        // Musica
+        AudioManager.Instance.ReproducirMusica(AudioManager.Instance.menuMusic);
     }
 
     // Update is called once per frame
@@ -47,6 +49,8 @@ public class UIManagerPago : MonoBehaviour
         ResultadoPoderes poderes = PagoHelper.CalcularResultado(objetosSeleccionados);
         PowerUpManager.Instance.poderesSeleccionados = poderes;
         PowerUpManager.Instance.estaJugando = true;
+        // Detener la musica
+        AudioManager.Instance.DetenerMusica();
         // Ir a la escena principal (combate o gameplay)
         UnityEngine.SceneManagement.SceneManager.LoadScene("Scenary");
     }
