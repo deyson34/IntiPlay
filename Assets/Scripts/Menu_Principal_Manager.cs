@@ -1,7 +1,7 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Menu_Principal_Manager : MonoBehaviour
 {
@@ -33,17 +33,70 @@ public class Menu_Principal_Manager : MonoBehaviour
     public Button translateButton;
     [SerializeField] private TextMeshProUGUI translateButtonText;
     private bool mostrandoIngles = true;
+    public bool jugando => PowerUpManager.Instance != null && PowerUpManager.Instance.estaJugando;
     void Start()
     {
-        foreach (var listener in FindObjectsByType<AudioListener>(FindObjectsSortMode.None))
+        if (jugando)
         {
-            listener.enabled = false;
-        }
-        menuCamera.GetComponent<AudioListener>().enabled = true;
+            // Activar la cámara principal y desactivar las demás
+            mainCamera.enabled = true;
+            creditCamera.enabled = false;
+            preJuegoCamera.enabled = false;
+            menuCamera.enabled = false;
 
-        MostrarMenu();  
-        // Asignar comportamiento al botón traducir
-        translateButton.onClick.AddListener(TranslateStory);     
+            // Desactivar todos los UIs excepto el de gameplay
+            uiMenu.SetActive(false);
+            uiCreditos.SetActive(false);
+            uiPreJuego.SetActive(false);
+            uiGameplay.SetActive(true);
+
+            // Desactivar todos los contenedores de escenario excepto el de gameplay
+            mainMenu.SetActive(false);
+            credits.SetActive(false);
+            preJuego.SetActive(false);
+
+            terrenoUI.SetActive(false);
+            terrenoGameplay.SetActive(true);
+
+            foreach (var listener in FindObjectsByType<AudioListener>(FindObjectsSortMode.None))
+            {
+                listener.enabled = false;
+            }
+            mainCamera.GetComponent<AudioListener>().enabled = true;
+        }
+        else
+        {
+            // Desactivar todas las cámaras excepto la del menú
+            mainCamera.enabled = false;
+            creditCamera.enabled = false;
+            preJuegoCamera.enabled = false;
+            menuCamera.enabled = true;
+
+            // Desactivar todos los UIs excepto el del menú principal
+            uiMenu.SetActive(true);
+            uiCreditos.SetActive(false);
+            uiPreJuego.SetActive(false);
+            uiGameplay.SetActive(false);
+
+            // Desactivar todos los contenedores de escenario excepto el del menú principal
+            mainMenu.SetActive(true);
+            credits.SetActive(false);
+            preJuego.SetActive(false);
+
+            terrenoUI.SetActive(true);
+            terrenoGameplay.SetActive(false);
+
+            foreach (var listener in FindObjectsByType<AudioListener>(FindObjectsSortMode.None))
+            {
+                listener.enabled = false;
+            }
+            menuCamera.GetComponent<AudioListener>().enabled = true;
+
+            MostrarMenu();  
+            // Asignar comportamiento al botón traducir
+            translateButton.onClick.AddListener(TranslateStory);
+        }
+             
     }
 
     public void MostrarMenu()
