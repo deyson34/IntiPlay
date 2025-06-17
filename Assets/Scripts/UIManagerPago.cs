@@ -41,9 +41,13 @@ public class UIManagerPago : MonoBehaviour
             if (obj != null)
             {
                 objetosSeleccionados.Add(obj);
-                Debug.Log($"Objeto seleccionado: {obj.nombre}, Elemento: {obj.tipoElemento}");
             }
         }
-        pagoManager.EnviarObjetosSeleccionados(objetosSeleccionados);
+
+        ResultadoPoderes poderes = PagoHelper.CalcularResultado(objetosSeleccionados);
+        PowerUpManager.Instance.poderesSeleccionados = poderes;
+        PowerUpManager.Instance.estaJugando = true;
+        // Ir a la escena principal (combate o gameplay)
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Scenary");
     }
 }
