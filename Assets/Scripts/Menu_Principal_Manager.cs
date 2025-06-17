@@ -38,31 +38,15 @@ public class Menu_Principal_Manager : MonoBehaviour
     {
         if (jugando)
         {
-            // Activar la cámara principal y desactivar las demás
-            mainCamera.enabled = true;
-            creditCamera.enabled = false;
-            preJuegoCamera.enabled = false;
-            menuCamera.enabled = false;
-
-            // Desactivar todos los UIs excepto el de gameplay
-            uiMenu.SetActive(false);
-            uiCreditos.SetActive(false);
-            uiPreJuego.SetActive(false);
-            uiGameplay.SetActive(true);
-
-            // Desactivar todos los contenedores de escenario excepto el de gameplay
-            mainMenu.SetActive(false);
-            credits.SetActive(false);
-            preJuego.SetActive(false);
-
-            terrenoUI.SetActive(false);
-            terrenoGameplay.SetActive(true);
-
+            EmpezarJuego();
             foreach (var listener in FindObjectsByType<AudioListener>(FindObjectsSortMode.None))
             {
                 listener.enabled = false;
             }
             mainCamera.GetComponent<AudioListener>().enabled = true;
+            AudioManager.Instance.DetenerMusica();
+            AudioManager.Instance.ReproducirMusica(AudioManager.Instance.gameplayMusic);
+            AudioManager.Instance.CambiarVolumen(0.6f);
         }
         else
         {
@@ -92,7 +76,9 @@ public class Menu_Principal_Manager : MonoBehaviour
             }
             menuCamera.GetComponent<AudioListener>().enabled = true;
 
-            MostrarMenu();  
+            MostrarMenu();
+            // Reproducir música del menú
+            AudioManager.Instance.ReproducirMusica(AudioManager.Instance.menuMusic);
             // Asignar comportamiento al botón traducir
             translateButton.onClick.AddListener(TranslateStory);
         }
@@ -117,6 +103,9 @@ public class Menu_Principal_Manager : MonoBehaviour
         creditCamera.enabled = false;
         preJuegoCamera.enabled = false;
         mainCamera.enabled = false;
+
+        AudioManager.Instance.DetenerMusica();
+        AudioManager.Instance.ReproducirMusica(AudioManager.Instance.menuMusic);
     }
 
     public void MostrarCreditos()
@@ -137,6 +126,7 @@ public class Menu_Principal_Manager : MonoBehaviour
         creditCamera.enabled = true;
         preJuegoCamera.enabled = false;
         mainCamera.enabled = false;
+        AudioManager.Instance.ReproducirMusica(AudioManager.Instance.menuMusic);
     }
 
     public void EmpezarPreJuego()
@@ -157,7 +147,10 @@ public class Menu_Principal_Manager : MonoBehaviour
         creditCamera.enabled = false;
         preJuegoCamera.enabled = true;
         mainCamera.enabled = false;
-
+        // Reproducir música del pre-juego
+        AudioManager.Instance.DetenerMusica();
+        AudioManager.Instance.ReproducirMusica(AudioManager.Instance.preGameMusic);
+        AudioManager.Instance.CambiarVolumen(0.60f);
         // Mostrar texto en inglés por defecto
         MostrarHistoriaIngles();
     }
@@ -188,28 +181,37 @@ public class Menu_Principal_Manager : MonoBehaviour
 
     public void PagoEscena()
     {
+        // Desactivar todas las cámaras excepto la del menú
+        mainCamera.enabled = false;
+        creditCamera.enabled = false;
+        preJuegoCamera.enabled = false;
+        menuCamera.enabled = false;
+        AudioManager.Instance.DetenerMusica();
+        AudioManager.Instance.CambiarVolumen(0.8f);
         // Cargar la escena de PersonalizarPago
         SceneManager.LoadScene("PagoTierraPowerUps");
     }
     public void EmpezarJuego()
     {
-        // Esto se llamaría después de la escena de PersonalizarPago
+        // Activar la cámara principal y desactivar las demás
+        mainCamera.enabled = true;
+        creditCamera.enabled = false;
+        preJuegoCamera.enabled = false;
+        menuCamera.enabled = false;
+
+        // Desactivar todos los UIs excepto el de gameplay
         uiMenu.SetActive(false);
         uiCreditos.SetActive(false);
         uiPreJuego.SetActive(false);
         uiGameplay.SetActive(true);
 
+        // Desactivar todos los contenedores de escenario excepto el de gameplay
         mainMenu.SetActive(false);
         credits.SetActive(false);
         preJuego.SetActive(false);
 
         terrenoUI.SetActive(false);
         terrenoGameplay.SetActive(true);
-
-        menuCamera.enabled = false;
-        creditCamera.enabled = false;
-        preJuegoCamera.enabled = false;
-        mainCamera.enabled = true;
     }
 
     public void SalirDelJuego()
